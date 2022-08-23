@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: starter
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:6543}/${POSTGRES_DB:starter_dev}
+    username: ${POSTGRES_USERNAME:starter_dev}
+    password: ${POSTGRES_PASSWORD:starter_dev}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
