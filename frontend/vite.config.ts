@@ -14,6 +14,9 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    outDir: 'build',
+  },
   test: {
     globals: true,
     setupFiles: './src/setupTests.ts',

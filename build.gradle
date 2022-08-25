@@ -31,3 +31,30 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+task installFrontend(type: Exec) {
+    inputs.file(file("frontend/yarn.lock"))
+    inputs.file(file("frontend/package.json"))
+    outputs.dir(file("frontend/node_modules"))
+    commandLine("yarn", "--cwd", "frontend", "install")
+}
+
+task buildFrontend(type: Exec) {
+    dependsOn("installFrontend")
+    inputs.dir(file("frontend"))
+    outputs.dir(file("frontend/build"))
+    commandLine("yarn", "--cwd", "frontend", "build")
+}
+
+task copyFrontend(type: Sync) {
+    dependsOn("buildFrontend")
+    from(file("./frontend/build"))
+    into(file("$buildDir/resources/main/static"))
+    doLast {
+        println("copied built frontend to static resources")
+    }
+}
+
+bootRun {
+    dependsOn(copyFrontend)
+}
