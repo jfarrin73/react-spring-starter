@@ -16,6 +16,6 @@ class SampleControllerTest {
 
         mvc.perform(get("/api/sample"))
             .andExpect(status().isOk())
-            .andExpect(content().string("This came from the server"));
+            .andExpect(content().string("This sentence came from the server"));
     }
 }

@@ -11,6 +11,6 @@ public class SampleController {
 
     @GetMapping("/sample")
     public ResponseEntity<String> sampleGetEndpoint(){
-        return ResponseEntity.ok("This came from the server");
+        return ResponseEntity.ok("This sentence came from the server");
     }
 }

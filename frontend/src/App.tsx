@@ -4,6 +4,7 @@ import './App.css'
 import {AppBar, Box, Button, Link as MuiLink, Stack, Typography} from "@mui/material";
 import {grey} from "@mui/material/colors";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import AnotherPage from "./AnotherPage";
 
 function App() {
     const [count, setCount] = useState(0)
@@ -57,13 +58,7 @@ function App() {
                             </Stack>
                         </>
                     }/>
-                    <Route path="page" element={
-                        <Stack>
-                            <Typography variant='h3'>
-                                A different React Router route
-                            </Typography>
-                        </Stack>
-                    }/>
+                    <Route path="page" element={<AnotherPage />}/>
                 </Routes>
             </BrowserRouter>
         </Box>
