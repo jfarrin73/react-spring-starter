@@ -14,7 +14,7 @@ const AnotherPage = () => {
     return (
         <Stack gap={4}>
             <Typography variant='h3'>
-                Another Page
+                A different React Router route
             </Typography>
             <Typography variant='body1' color={grey[500]}>
                 {textFromServer}
