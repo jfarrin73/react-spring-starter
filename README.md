@@ -8,15 +8,12 @@ A simple starter project for a full stack web app.
 `Java` `Spring` `Gradle`
 ### Database
 `PostgreSQL` `Flyway`
-
 ## Getting started
 1. Fork and clone this repo
 2. Install dependencies
 3. Start Postgres in Docker
 4. Run the app
-
 ### Install Dependencies
-
 1. [Install Docker](https://docs.docker.com/get-docker/)
 2. Install `node`
     ```shell script
@@ -40,21 +37,24 @@ A simple starter project for a full stack web app.
     ```shell script
     docker compose up -d
     ```
-
 ### Run the app
-
 #### Run both frontend and backend on port 8080
 ```bash 
 ./gradlew bootRun
 ```
-
 #### Run the frontend on port 3000
 ```
 cd frontend
 yarn start
 ```
-
+### Frontend Tests
+#### Vitest plugin
+To run individual tests or an entire describe through intellij, you can
+install [this Vitest runner plugin](https://plugins.jetbrains.com/plugin/19220-vitest-runner)
+#### Terminal
+```bash
+yarn test
+```
 ## Contributing
-The current packages will no doubt be out-dated soon.
-If you'd like to help keep this starter app up to date or just recommend a change,
-feel free to open a PR or submit an issue.
+The current packages will no doubt be out-dated soon. If you'd like to help keep this starter app up to date or just
+recommend a change, feel free to open a PR or submit an issue.
