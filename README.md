@@ -48,9 +48,6 @@ cd frontend
 yarn start
 ```
 ### Frontend Tests
-#### Vitest plugin
-To run individual tests or an entire describe through intellij, you can
-install [this Vitest runner plugin](https://plugins.jetbrains.com/plugin/19220-vitest-runner)
 #### Terminal
 ```bash
 yarn test
