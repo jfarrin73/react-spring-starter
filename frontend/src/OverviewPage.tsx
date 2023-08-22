@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 const OverviewPage = () =>
     (
-        <Box textAlign='start' mt={8} maxWidth={'100%'}>
+        <Box mt={4} p={4} overflow='hidden'>
             <ReactMarkdown>
                 {'## File Structure\n' +
                     '- you\'ll find 2 colors for files/directories. depending on your theme, white/black are the files you\'ll be working on, the other directories are files that are generated either by intellij or when your code is built. \n' +
@@ -54,7 +54,7 @@ const OverviewPage = () =>
                     '<div id="root"></div>' +
                     '- React is injecting itself into your html file at this div. This is the start of your React app and is the top node of your hierarchy. You\'ll see this hierarchy represented by `jsx` tags like this `<App />`. All of the other `.tsx` files in the repo are referenced as sub-components of this one. \n' +
                     '- You can hold `cmd` and click on the `<App />` (or click on the text App and press `cmd + B`) to navigate to where the code for App is defined (`./src/App.tsx`)\n' +
-                    '- From here you\'ll find the hierarchy continues and you can navigate into `<Home/>` and `<AnotherPage/>` which each correspond to a page you\'ll see in your browser.\n' +
+                    '- From here you\'ll find the hierarchy continues and you can navigate into `<HomePage/>` and the other Route Elements which each correspond to a page you\'ll see in your browser.\n' +
                     '- Notice the path in `<Route path=\'page\' />`  corresponds to the url in your browser.'
                 }
             </ReactMarkdown>

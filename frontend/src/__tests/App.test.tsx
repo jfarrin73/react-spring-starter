@@ -3,9 +3,7 @@ import App from "../App";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {setupServer} from "msw/node";
-import {rest} from "msw";
-import Home from "../Home";
-import AnotherPage from "../AnotherPage";
+import HomePage from "../HomePage";
 
 describe("App", () => {
 
@@ -14,14 +12,14 @@ describe("App", () => {
     afterAll(() => server.close())
     afterEach(() => server.resetHandlers())
 
-    describe('Home', () => {
+    describe('HomePage', () => {
         it('should run a simple test', () => {
-            render(<Home/>);
+            render(<HomePage/>);
             expect(screen.getByText("Vite + React")).toBeInTheDocument();
         });
 
         it('should increment counter button', async () => {
-            render(<Home/>);
+            render(<HomePage/>);
             await userEvent.click(screen.getByRole("button", {name: "count is 0"}));
             expect(screen.queryByRole("button", {name: "count is 0"})).toBeNull();
             await userEvent.click(screen.getByRole("button", {name: "count is 1"}));
@@ -30,28 +28,15 @@ describe("App", () => {
         });
     })
 
-    describe('App', () => {
+    describe('Router', () => {
         it('should navigate between react router routes', async () => {
-            server.use(rest.get('/api/sample', (req, res, ctx) =>
-                res(ctx.status(200), ctx.json("mock response from server"))
-            ))
             render(<App/>);
             expect(screen.getByText("Vite + React")).toBeInTheDocument();
-            await userEvent.click(screen.getByRole("link", {name: "Another Page"}));
-            expect(screen.getByText("A different React Router route")).toBeInTheDocument();
+            await userEvent.click(screen.getByRole("link", {name: "What's in this App"}));
+            expect(screen.getByText("File Structure")).toBeInTheDocument();
 
             await userEvent.click(screen.getByRole("link", {name: "Home"}));
             expect(screen.getByText("Vite + React")).toBeInTheDocument();
-        });
-    })
-
-    describe('Another Page', () => {
-        it('should display text from server', async () => {
-            server.use(rest.get('/api/sample', (req, res, ctx) =>
-                res(ctx.status(200), ctx.json("mock response from server"))
-            ))
-            render(<AnotherPage/>);
-            expect(await screen.findByText("mock response from server")).toBeInTheDocument();
         });
     })
 });

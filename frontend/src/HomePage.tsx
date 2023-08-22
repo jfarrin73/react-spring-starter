@@ -3,11 +3,11 @@ import {Button, Link as MuiLink, Stack, Typography} from "@mui/material";
 import reactLogo from "./assets/react.svg";
 import {grey} from "@mui/material/colors";
 
-const Home = () => {
+const HomePage = () => {
     const [count, setCount] = useState(0)
 
     return (
-        <>
+        <Stack sx={{minHeight: '100vh'}} pb={10} px={4} alignItems={'center'} justifyContent={'center'} >
             <Stack direction='row' justifyContent='center'>
                 <MuiLink href="https://vitejs.dev" target="_blank">
                     <img src="/vite.svg" className="logo" alt="Vite logo"/>
@@ -27,21 +27,21 @@ const Home = () => {
                 Frontend packages
             </Typography>
             <Stack direction='row' gap={4}>
-                <MuiLink color='secondary' fontSize='x-large' href='https://mui.com/material-ui/getting-started/overview/'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/getting-started/overview/'>
                     Material UI
                 </MuiLink>
-                <MuiLink color='secondary' fontSize='x-large' href='https://mui.com/material-ui/material-icons/#main-content'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/material-icons/#main-content'>
                     Material Icons
                 </MuiLink>
-                <MuiLink color='secondary' fontSize='x-large' href='https://axios-http.com/docs/intro'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://axios-http.com/docs/intro'>
                     Axios
                 </MuiLink>
-                <MuiLink color='secondary' fontSize='x-large' href='https://reactrouter.com/docs/en/v6'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://reactrouter.com/docs/en/v6'>
                     React Router v6
                 </MuiLink>
             </Stack>
-        </>
+        </Stack>
     )
 };
 
-export default Home;
+export default HomePage;
