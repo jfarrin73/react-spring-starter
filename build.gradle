@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '3.1.2'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
 }
@@ -32,21 +32,21 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-task installFrontend(type: Exec) {
+tasks.register('installFrontend', Exec) {
     inputs.file(file("frontend/yarn.lock"))
     inputs.file(file("frontend/package.json"))
     outputs.dir(file("frontend/node_modules"))
     commandLine("yarn", "--cwd", "frontend", "install")
 }
 
-task buildFrontend(type: Exec) {
+tasks.register('buildFrontend', Exec) {
     dependsOn("installFrontend")
     inputs.dir(file("frontend"))
     outputs.dir(file("frontend/build"))
     commandLine("yarn", "--cwd", "frontend", "build")
 }
 
-task copyFrontend(type: Sync) {
+tasks.register('copyFrontend', Sync) {
     dependsOn("buildFrontend")
     from(file("./frontend/build"))
     into(file("$buildDir/resources/main/static"))
