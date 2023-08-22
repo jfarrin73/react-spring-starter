@@ -18,28 +18,25 @@ const Home = () => {
             </Stack>
             <Typography variant='h2' fontWeight={500}>Vite + React</Typography>
             <Stack alignItems='center' padding='2em' gap={2}>
-                <Button variant="contained" color='success'
+                <Button variant="outlined" color='primary'
                         onClick={() => setCount((count) => count + 1)}>
                     count is {count}
                 </Button>
-                <Typography variant='body1'>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </Typography>
             </Stack>
             <Typography variant='h5' color={grey[500]} paddingBottom={2}>
                 Frontend packages
             </Typography>
             <Stack direction='row' gap={4}>
-                <MuiLink href='https://mui.com/material-ui/getting-started/overview/'>
+                <MuiLink color='secondary' fontSize='x-large' href='https://mui.com/material-ui/getting-started/overview/'>
                     Material UI
                 </MuiLink>
-                <MuiLink href='https://mui.com/material-ui/material-icons/#main-content'>
+                <MuiLink color='secondary' fontSize='x-large' href='https://mui.com/material-ui/material-icons/#main-content'>
                     Material Icons
                 </MuiLink>
-                <MuiLink href='https://axios-http.com/docs/intro'>
+                <MuiLink color='secondary' fontSize='x-large' href='https://axios-http.com/docs/intro'>
                     Axios
                 </MuiLink>
-                <MuiLink href='https://reactrouter.com/docs/en/v6'>
+                <MuiLink color='secondary' fontSize='x-large' href='https://reactrouter.com/docs/en/v6'>
                     React Router v6
                 </MuiLink>
             </Stack>
