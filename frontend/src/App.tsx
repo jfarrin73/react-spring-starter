@@ -14,13 +14,13 @@ const App = () => {
                     <Stack direction='row' gap={4} padding={2}>
                         <Link to='/'><Typography color='primary' variant='h5' sx={{textDecoration: 'none' }}>Home</Typography></Link>
                         <Link to='overview'><Typography color='primary' variant='h5'>What's in this App</Typography></Link>
-                        <Link to='page'><Typography color='primary' variant='h5'>Your To Do List</Typography></Link>
+                        <Link to='todo'><Typography color='primary' variant='h5'>Your To Do List</Typography></Link>
                     </Stack>
                 </AppBar>
                 <Routes>
                     <Route index element={<HomePage/>}/>
                     <Route path='overview' element={<OverviewPage />}/>
-                    <Route path='page' element={<ToDoListPage />}/>
+                    <Route path='todo' element={<ToDoListPage />}/>
                 </Routes>
             </BrowserRouter>
         </Box>

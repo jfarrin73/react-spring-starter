@@ -1,6 +1,6 @@
 import {setupServer} from "msw/node";
 import {rest} from "msw";
-import {createTask, fetchTasks, Task} from "../ToDoService";
+import {createToDo, fetchToDos, ToDo} from "../ToDoService";
 
 describe('ToDoService', () => {
     const server = setupServer()
@@ -8,8 +8,8 @@ describe('ToDoService', () => {
     afterAll(() => server.close())
     afterEach(() => server.resetHandlers())
 
-    it('should send a post request with new task', async () => {
-        const expected: Task = {
+    it('should send a post request with new toDo', async () => {
+        const expected: ToDo = {
             id: 1,
             text: 'new Task',
             status: 'active'
@@ -18,11 +18,11 @@ describe('ToDoService', () => {
             res(ctx.status(201), ctx.json(expected))
         ))
 
-        expect(await createTask('new task')).toStrictEqual(expected);
+        expect(await createToDo('new task')).toStrictEqual(expected);
     });
 
     it('should send a get request to fetch existing tasks', async () => {
-        const expected: Task[] = [
+        const expected: ToDo[] = [
             {id: 1, text: 'first task', status: 'active'},
             {id: 2, text: 'second task', status: 'active'},
             {id: 3, text: 'third task', status: 'complete'},
@@ -32,6 +32,6 @@ describe('ToDoService', () => {
             res(ctx.status(201), ctx.json(expected))
         ))
 
-        expect(await fetchTasks()).toStrictEqual(expected);
+        expect(await fetchToDos()).toStrictEqual(expected);
     });
 });

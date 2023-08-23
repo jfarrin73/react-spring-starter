@@ -10,28 +10,28 @@ describe('ToDoList', () => {
     })
 
     it('should send new to do when add button clicked', async () => {
-        const newTask = 'new Task';
-        vi.spyOn(toDoService, 'fetchTasks').mockResolvedValue([]);
-        const mockCreateTask = vi.spyOn(toDoService, 'createTask').mockResolvedValueOnce({id: 10, text: newTask, status: 'active'});
+        const newToDo = 'new Task';
+        vi.spyOn(toDoService, 'fetchToDos').mockResolvedValue([]);
+        const mockCreateToDo = vi.spyOn(toDoService, 'createToDo').mockResolvedValueOnce({id: 10, text: newToDo, status: 'active'});
         render(<ToDoListPage/>)
         const taskInput = screen.getByLabelText('Task');
-        await userEvent.type(taskInput, newTask);
+        await userEvent.type(taskInput, newToDo);
         const addButton = screen.getByRole('button', {name: 'Add'});
         await userEvent.click(addButton);
-        expect(mockCreateTask).toHaveBeenCalledWith(newTask);
-        expect(mockCreateTask).toHaveBeenCalledOnce();
+        expect(mockCreateToDo).toHaveBeenCalledWith(newToDo);
+        expect(mockCreateToDo).toHaveBeenCalledOnce();
         expect(screen.getByLabelText('Task')).toHaveValue('');
-        expect(await screen.findByText(newTask)).toBeVisible()
+        expect(await screen.findByText(newToDo)).toBeVisible()
     });
 
-    it('should not call createTask if no text has been entered', async () => {
-        vi.spyOn(toDoService, 'fetchTasks').mockResolvedValue([]);
-        const mockCreateTask = vi.spyOn(toDoService, 'createTask')
-            .mockRejectedValue('create Task was called, but should not have been');
+    it('should not call createToDo if no text has been entered', async () => {
+        vi.spyOn(toDoService, 'fetchToDos').mockResolvedValue([]);
+        const mockCreateToDo = vi.spyOn(toDoService, 'createToDo')
+            .mockRejectedValue('createToDo was called, but should not have been');
         render(<ToDoListPage/>)
         const addButton = screen.getByRole('button', {name: 'Add'});
         await userEvent.click(addButton);
-        expect(mockCreateTask).not.toHaveBeenCalled();
+        expect(mockCreateToDo).not.toHaveBeenCalled();
     });
 
     it('should display existing tasks with checkboxes checked if complete', async () => {
@@ -39,11 +39,11 @@ describe('ToDoList', () => {
             {id: 10, text: 'incomplete task', status: 'active'},
             {id: 11, text: 'complete task', status: 'complete'},
         ]
-        const mockFetchTasks = vi.spyOn(toDoService, 'fetchTasks')
+        const mockFetchToDos = vi.spyOn(toDoService, 'fetchToDos')
             .mockResolvedValue(expected);
 
         render(<ToDoListPage/>)
-        expect(mockFetchTasks).toHaveBeenCalledOnce();
+        expect(mockFetchToDos).toHaveBeenCalledOnce();
         expect(await screen.findByText('incomplete task')).toBeVisible();
         expect(await screen.findByText('complete task')).toBeVisible();
         const checkboxes = await screen.findAllByRole('checkbox');

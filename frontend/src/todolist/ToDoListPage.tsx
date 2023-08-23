@@ -1,42 +1,21 @@
 import React, {useEffect, useState} from "react";
-import {
-    Button,
-    Checkbox,
-    IconButton,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    Stack,
-    TextField,
-    Typography
-} from "@mui/material";
-import {DeleteOutline} from "@mui/icons-material";
-import {createTask, fetchTasks, Task} from "./ToDoService";
-import {grey} from "@mui/material/colors";
+import {Button, List, Stack, TextField, Typography} from "@mui/material";
+import {createToDo, fetchToDos, ToDo} from "./ToDoService";
+import {ToDoCard} from "./ToDoCard";
 
 export const ToDoListPage = () => {
-
-    const testItems = [
-        {id: 1, text: 'Add a Patch endpoint to save complete tasks', status: 'active'},
-        {id: 2, text: 'Add a Delete endpoint to delete tasks', status: 'active'},
-        {id: 3, text: 'Display "No Tasks Found" when there are no tasks', status: 'active'},
-        {id: 4, text: 'Add a button to hide/show complete tasks', status: 'active'},
-        {id: 5, text: 'Add edit task functionality', status: 'active'},
-    ]
-
-    const [tasks, setTasks] = useState<Task[]>(testItems)
-    const [newTaskText, setNewTaskText] = useState<string>('')
+    const [toDos, setToDos] = useState<ToDo[]>([])
+    const [newToDoText, setNewToDoText] = useState<string>('')
 
     useEffect(() => {
-        fetchTasks().then(setTasks);
+        fetchToDos().then(setToDos);
     }, [])
 
     const handleAdd = () => {
-        if (newTaskText) {
-            createTask(newTaskText).then(savedTask => {
-                setTasks((currentItems) => [...currentItems, savedTask]);
-                setNewTaskText('');
+        if (newToDoText) {
+            createToDo(newToDoText).then(savedToDo => {
+                setToDos((currentItems) => [...currentItems, savedToDo]);
+                setNewToDoText('');
             })
         }
     }
@@ -46,32 +25,13 @@ export const ToDoListPage = () => {
             <Stack mt={7} pb={1} flex='1' overflow='auto'>
                 <Typography variant='h5' fontWeight={600}>Your To Do List</Typography>
                 <List>
-                    {tasks.map(task => (
-                        <ListItem key={task.id + task.text}
-                                  sx={{mt: 1, borderRadius: 1, backgroundColor: grey[900], overflow: 'hidden'}}
-                                  secondaryAction={
-                                      <IconButton color='error' edge="end" aria-label="comments">
-                                          <DeleteOutline/>
-                                      </IconButton>
-                                  }
-                                  disablePadding>
-                            <ListItemButton role={undefined} dense>
-                                <ListItemIcon>
-                                    <Checkbox
-                                        edge="start"
-                                        checked={task.status === 'complete'}
-                                        tabIndex={-1}
-                                        disableRipple
-                                    />
-                                </ListItemIcon>
-                                <Typography fontSize='large'>{task.text}</Typography>
-                            </ListItemButton>
-                        </ListItem>
+                    {toDos.map(toDo => (
+                        <ToDoCard key={toDo.id + toDo.text} initialToDo={toDo}/>
                     ))}
                 </List>
             </Stack>
             <Stack direction='row' gap={1}>
-                <TextField label='Task' fullWidth value={newTaskText} onChange={(e) => setNewTaskText(e.target.value)}/>
+                <TextField label='Task' fullWidth value={newToDoText} onChange={(e) => setNewToDoText(e.target.value)}/>
                 <Button variant='contained' onClick={handleAdd}>Add</Button>
             </Stack>
         </Stack>

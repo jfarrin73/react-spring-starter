@@ -1,20 +1,20 @@
 import axios, {AxiosResponse} from "axios";
 
-export type Task = {
+export type ToDo = {
     id: number | null,
     text: string,
     status: string
 }
 
-type CreateTask = (text: string) => Promise<Task>;
-type FetchTasks = () => Promise<Task[]>;
+type CreateToDo = (text: string) => Promise<ToDo>;
+type FetchToDos = () => Promise<ToDo[]>;
 
-export const createTask: CreateTask = (text) => (
+export const createToDo: CreateToDo = (text) => (
     axios.post('/api/todos', {text, status: 'active'})
-        .then((r: AxiosResponse<Task>) => r.data)
+        .then((r: AxiosResponse<ToDo>) => r.data)
 )
 
-export const fetchTasks: FetchTasks = () => (
+export const fetchToDos: FetchToDos = () => (
     axios.get('/api/todos')
-        .then((r: AxiosResponse<Task[]>) => r.data)
+        .then((r: AxiosResponse<ToDo[]>) => r.data)
 )

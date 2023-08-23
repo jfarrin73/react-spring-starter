@@ -4,10 +4,14 @@ import ReactMarkdown from "react-markdown";
 
 const OverviewPage = () =>
     (
-        <Box mt={4} p={4} overflow='hidden'>
+        <Box mt={4} p={4} overflow='hidden' sx={{wordBreak: 'break-word'}}>
             <ReactMarkdown>
-                {'## File Structure\n' +
-                    '- you\'ll find 2 colors for files/directories. depending on your theme, white/black are the files you\'ll be working on, the other directories are files that are generated either by intellij or when your code is built. \n' +
+                {'## Getting Started\n' +
+                    '- You should have the project open in intellij and the app running in a browser.\n' +
+                    '- Put both windows side by side on your screen. You can use `[ctrl + option + left/right arrow]` if you\'re using Rectangle\n' +
+                    '- As you read through this page, open each file and directory in intellij and follow along.\n' +
+                    '## File Structure\n' +
+                    '- You\'ll find 2 colors for files/directories. depending on your theme, white/black are the files you\'ll be working on, the other directories are files that are generated either by intellij or when your code is built. \n' +
                     '- When you do a `bootRun`, the code actually being executed can be found in the `./build` directory\n' +
                     '- Look through each file in the root directory. It\'s okay if you don\'t know what every file is doing. `build.gradle` and `docker-compose.yml` are two of the important ones.\n' +
                     '### `docker-compose.yml` \n' +
@@ -25,7 +29,11 @@ const OverviewPage = () =>
                     '### `./src` \n' +
                     '- This is where your backend (java) code lives. You\'ll find `./src/main` and `./src/test` directories which nearly mirror one another. `test` is where we write tests against our production code. `main` is where we write our production code that you see when you run the app.\n' +
                     '### `./src/main/resources/application.yaml`\n' +
-                    '- this is the configuration file for our backend. You can configure all kinds of things in this file like the port the app runs on, the connection details for the database or other services, feature flags, logging settings, authentication details. This list goes on, but an important thing about this file is that we can override the values in this file using environment variables which means we can one value set in the file when running locally and when we deploy the app, we can have different values set in production.\n' +
+                    '- This is the configuration file for our backend. You can configure all kinds of things in this file like the port the app runs on, the connection details for the database or other services, feature flags, logging settings, authentication details. This list goes on, but an important thing about this file is that we can override the values in this file using environment variables which means we can one value set in the file when running locally and when we deploy the app, we can have different values set in production.\n' +
+                    '### `./src/main/resources/db/migration`\n' +
+                    '- This directory contains database migrations. These are a series of sql commands that are executed against your database at runtime. These migrations are managed by Flyway which is a dependency you\'ll see in build.gradle.\n' +
+                    '- Flyway ensures that each migration is only run once.\n' +
+                    '- Migrations allow us to incremementally modify the database schema in a way that can be shared across multiple environments (development, staging, production)\n' +
                     '### `./src/main/java/com/example/reactspringstarter/ReactSpringStarterApplication.java`\n' +
                     '- This is the starting point for our java application. This is the first code that gets executed when when running the application. It doesn\'t look like much is going on here, but notice the annotation `@SpringBootApplication` . This is where the magic happens. Spring does all kinds of things behind the scenes for us like making the connection to the database, and doing a component scan which you\'ll learn more about later.\n' +
                     '### `./src/test`\n' +
