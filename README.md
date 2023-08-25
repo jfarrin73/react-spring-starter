@@ -52,6 +52,3 @@ yarn start
 ```bash
 yarn test
 ```
-## Contributing
-The current packages will no doubt be out-dated soon. If you'd like to help keep this starter app up to date or just
-recommend a change, feel free to open a PR or submit an issue.
