@@ -27,16 +27,16 @@ const HomePage = () => {
                 Frontend packages
             </Typography>
             <Stack direction='row' gap={4}>
-                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/getting-started/overview/'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/getting-started/overview/' rel='noreferrer' target='_blank'>
                     Material UI
                 </MuiLink>
-                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/material-icons/#main-content'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/material-icons/#main-content' rel='noreferrer' target='_blank'>
                     Material Icons
                 </MuiLink>
-                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://axios-http.com/docs/intro'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://axios-http.com/docs/intro' rel='noreferrer' target='_blank'>
                     Axios
                 </MuiLink>
-                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://reactrouter.com/docs/en/v6'>
+                <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://reactrouter.com/en/6.15.0/start/overview' rel='noreferrer' target='_blank'>
                     React Router v6
                 </MuiLink>
             </Stack>
