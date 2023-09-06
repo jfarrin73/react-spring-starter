@@ -42,17 +42,21 @@ tasks.register('installFrontend', Exec) {
 tasks.register('buildFrontend', Exec) {
     dependsOn("installFrontend")
     inputs.dir(file("frontend"))
-    outputs.dir(file("frontend/build"))
+    outputs.dir(file("frontend/dist"))
     commandLine("yarn", "--cwd", "frontend", "build")
 }
 
 tasks.register('copyFrontend', Sync) {
     dependsOn("buildFrontend")
-    from(file("./frontend/build"))
+    from(file("./frontend/dist"))
     into(file("$buildDir/resources/main/static"))
     doLast {
         println("copied built frontend to static resources")
     }
+}
+
+resolveMainClassName {
+	dependsOn(copyFrontend)
 }
 
 bootRun {
