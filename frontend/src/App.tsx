@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css'
 import {AppBar, Box, Stack, Typography} from '@mui/material';
 import {BrowserRouter, Link, Route, Routes} from 'react-router-dom';

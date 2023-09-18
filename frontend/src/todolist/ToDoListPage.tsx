@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, List, Stack, TextField, Typography} from "@mui/material";
 import {createToDo, fetchToDos, ToDo} from "./ToDoService";
 import {ToDoCard} from "./ToDoCard";

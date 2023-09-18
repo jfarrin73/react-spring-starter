@@ -1,8 +1,12 @@
 import {setupServer} from "msw/node";
 import {rest} from "msw";
 import {createToDo, fetchToDos, ToDo} from "../ToDoService";
+import axios from "axios";
 
 describe('ToDoService', () => {
+
+    axios.defaults.baseURL = "http://localhost:3000"
+
     const server = setupServer()
     beforeAll(() => server.listen({onUnhandledRequest: 'error'}))
     afterAll(() => server.close())
@@ -14,7 +18,7 @@ describe('ToDoService', () => {
             text: 'new Task',
             status: 'active'
         }
-        server.use(rest.post('/api/todos', (req, res, ctx) =>
+        server.use(rest.post('/api/todos', (_req, res, ctx) =>
             res(ctx.status(201), ctx.json(expected))
         ))
 
@@ -28,7 +32,7 @@ describe('ToDoService', () => {
             {id: 3, text: 'third task', status: 'complete'},
         ];
 
-        server.use(rest.get('/api/todos', (req, res, ctx) =>
+        server.use(rest.get('/api/todos', (_req, res, ctx) =>
             res(ctx.status(201), ctx.json(expected))
         ))
 

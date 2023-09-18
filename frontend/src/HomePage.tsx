@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, Link as MuiLink, Stack, Typography} from "@mui/material";
 import reactLogo from "./assets/react.svg";
 import {grey} from "@mui/material/colors";

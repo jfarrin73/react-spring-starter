@@ -2,7 +2,7 @@ import {ToDo} from "./ToDoService";
 import {Checkbox, IconButton, ListItem, ListItemButton, ListItemIcon, Typography} from "@mui/material";
 import {grey} from "@mui/material/colors";
 import {DeleteOutline} from "@mui/icons-material";
-import React, {useState} from "react";
+import {useState} from "react";
 
 type ToDoProps = { initialToDo: ToDo };
 export const ToDoCard = ({initialToDo}: ToDoProps) => {
