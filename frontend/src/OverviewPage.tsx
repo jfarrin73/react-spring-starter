@@ -10,7 +10,7 @@ const OverviewPage = () =>
                     '- Put both windows side by side on your screen. You can use `[ctrl + option + left/right arrow]` if you\'re using Rectangle\n' +
                     '- As you read through this page, open each file and directory in intellij and follow along.\n' +
                     '## File Structure\n' +
-                    '- You\'ll find 2 colors for files/directories. depending on your theme, white/black are the files you\'ll be working on, the other directories are files that are generated either by intellij or when your code is built. \n' +
+                    '- You\'ll find files highlighted in a few different colors depending on what theme you use in intelliJ. For the defualt intelliJ dark theme, test files and directories will be green, production will be blue or while, and ignored/generated directories will be orange. If these colors do not match what you see, try to figure out how to identify each category based on your theme. \n' +
                     '- When you do a `bootRun`, the code actually being executed can be found in the `./build` directory\n' +
                     '- Look through each file in the root directory. It\'s okay if you don\'t know what every file is doing. `build.gradle` and `docker-compose.yml` are two of the important ones.\n' +
                     '### `docker-compose.yml` \n' +
@@ -34,9 +34,9 @@ const OverviewPage = () =>
                     '- Flyway ensures that each migration is only run once.\n' +
                     '- Migrations allow us to incremementally modify the database schema in a way that can be shared across multiple environments (development, staging, production)\n' +
                     '### `./src/main/java/com/example/reactspringstarter/ReactSpringStarterApplication.java`\n' +
-                    '- This is the starting point for our java application. This is the first code that gets executed when when running the application. It doesn\'t look like much is going on here, but notice the annotation `@SpringBootApplication` . This is where the magic happens. Spring does all kinds of things behind the scenes for us like making the connection to the database, and doing a component scan which you\'ll learn more about later.\n' +
+                    '- This is the starting point for our java application. This is the first code that gets executed when running the application. It doesn\'t look like much is going on here, but notice the annotation `@SpringBootApplication`. Spring does all kinds of things behind the scenes for us like making the connection to the database, and doing a component scan which you\'ll learn more about later.\n' +
                     '### `./src/test`\n' +
-                    '- Look through the test files here. You should see green play buttons next to some of the test methods/classes. This allows you to run the tests the intellij.\n' +
+                    '- Look through the test files here. You should see green play buttons next to some of the test methods/classes. This allows you to run the tests in intellij.\n' +
                     '- You can also use the `./gradlew test` command in terminal to run all tests in the project through the terminal.\n' +
                     '## Frontend\n' +
                     '### `./frontend`\n' +
@@ -54,14 +54,14 @@ const OverviewPage = () =>
                     '- These are more dependencies that we need for our frontend, but they are only needed for development. These dependencies should not be referenced in production code as these dependencies will not be included in the built version of our application. You\'ll find things like `typescript`, `vite`, and several testing libraries here.\n' +
                     '-  You can add other devDependencies from the terminal using yarn: `yarn add -D <package name>`\n' +
                     '### `./index.html`\n' +
-                    '- This is the single html file in our single page web application. React is a javascript framework that enables building single page applications. That means that there is only one .html file sent to the browser and we use javascript to manipulate the html and css rendered on that page. This is that file.\n' +
+                    '- This is the single html file in our single page web application. React is a javascript framework that enables building single page applications. That means that there is only one html file sent to the browser, and we use javascript to manipulate the html and css rendered on that page. This is that file.\n' +
                     '### `./src/index.tsx`\n' +
                     '- This is where we connect React to that single html file. notice: document.getElementById(\'root\')\n' +
                     '- If you go back to `./index.html`, you\'ll find:' +
                     '<div id="root"></div>' +
-                    '- React is injecting itself into your html file at this div. This is the start of your React app and is the top node of your hierarchy. You\'ll see this hierarchy represented by `jsx` tags like this `<App />`. All of the other `.tsx` files in the repo are referenced as sub-components of this one. \n' +
+                    '- React is injecting itself into your html file at this div. This is the start of your React app and is the top node of your hierarchy. You\'ll see this hierarchy represented by `jsx` tags like this `<App />`. All the other `.tsx` files in the repo are referenced as sub-components of this one. \n' +
                     '- You can hold `cmd` and click on the `<App />` (or click on the text App and press `cmd + B`) to navigate to where the code for App is defined (`./src/App.tsx`)\n' +
-                    '- From here you\'ll find the hierarchy continues and you can navigate into `<HomePage/>` and the other Route Elements which each correspond to a page you\'ll see in your browser.\n' +
+                    '- From here you\'ll find the hierarchy continues, and you can navigate into `<HomePage/>` and the other Route Elements which each correspond to a page you\'ll see in your browser.\n' +
                     '- Notice the path in `<Route path=\'page\' />`  corresponds to the url in your browser.'
                 }
             </ReactMarkdown>
