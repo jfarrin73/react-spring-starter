@@ -50,4 +50,23 @@ describe('ToDoList', () => {
         expect(checkboxes[0]).not.toBeChecked();
         expect(checkboxes[1]).toBeChecked();
     });
+
+    it('should delete existing to do item', async () => {
+        const initialToDos = [
+            {id: 10, text: 'incomplete task', status: 'active'},
+            {id: 11, text: 'complete task', status: 'complete'},
+        ]
+        const mockDeleteToDo = vi.spyOn(toDoService, 'deleteToDo').mockReturnValue(Promise.resolve())
+
+        const mockFetchToDos = vi.spyOn(toDoService, 'fetchToDos')
+          .mockResolvedValue(initialToDos);
+
+        render(<ToDoListPage/>)
+
+        const deleteButtons = await screen.findAllByLabelText('delete button');
+        await userEvent.click(deleteButtons[0])
+
+        expect(mockDeleteToDo).toHaveBeenCalledWith(10)
+        expect(mockFetchToDos).toHaveBeenCalledTimes(2)
+    });
 });
