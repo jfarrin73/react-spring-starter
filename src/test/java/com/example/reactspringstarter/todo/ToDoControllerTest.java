@@ -13,8 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,8 +30,8 @@ class ToDoControllerTest {
     void shouldAcceptGetRequestToFetchToDos() throws Exception {
         when(toDoService.fetchToDos()).thenReturn(List.of());
         mvc.perform(get("/api/todos"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
+           .andExpect(status().isOk())
+           .andExpect(content().json("[]"));
         verify(toDoService, times(1)).fetchToDos();
     }
 
@@ -44,12 +43,23 @@ class ToDoControllerTest {
         String newToDoJson = new ObjectMapper().writeValueAsString(newToDo);
         String savedToDoJson = new ObjectMapper().writeValueAsString(savedToDo);
         mvc.perform(post("/api/todos")
-                        .contentType(APPLICATION_JSON)
-                        .content(newToDoJson))
-                .andExpect(status().isCreated())
-                .andExpect(content().json(savedToDoJson));
+                   .contentType(APPLICATION_JSON)
+                   .content(newToDoJson))
+           .andExpect(status().isCreated())
+           .andExpect(content().json(savedToDoJson));
         ArgumentCaptor<ToDo> captor = ArgumentCaptor.forClass(ToDo.class);
         verify(toDoService, times(1)).createToDo(captor.capture());
-        assertThat(captor.getValue()).usingRecursiveComparison().isEqualTo(newToDo);
+        assertThat(captor.getValue()).usingRecursiveComparison()
+                                     .isEqualTo(newToDo);
+    }
+
+    @Test
+    void shouldAcceptDeleteRequestsToDeleteAToDo() throws Exception {
+        when(toDoService.deleteToDo(1L)).thenReturn(1L);
+        mvc.perform(delete("/api/todos/1"))
+           .andExpect(status().isOk())
+           .andExpect(content().json("1"));
+
+        verify(toDoService).deleteToDo(1L);
     }
 }

@@ -23,4 +23,10 @@ public class ToDoController {
     public ResponseEntity<ToDo> createToDo(@RequestBody ToDo newToDo){
         return new ResponseEntity<>(toDoService.createToDo(newToDo), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public Long deleteToDo(@PathVariable Long id){
+        return toDoService.deleteToDo(id);
+    }
+
 }
